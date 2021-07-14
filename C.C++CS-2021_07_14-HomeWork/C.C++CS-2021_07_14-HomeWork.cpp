@@ -173,23 +173,27 @@ int suffleTrump()
 	// ランダム変数
 	int randomNum = 0;
 
-	for (int i = 0; i <= 40; i++)
+	// 初期化
+	for (int i = 0; i < 5; i++)
 	{
-		// シャッフル
+		anyRandomNum[i] = -1;
+	}
+
+	// 100回シャッフル
+	for (int j = 0; j <= 100; j++)
+	{
+		// ランダム生成
 		randomNum = rand() % 53;
 
-		// おなじカードが出ないための例外処理
-		for (int j = 0; j <= 5; j++)
+		// 同じカードが出ないための例外処理 (うまく動かない感じです)
+		anyRandomNum[j] = randomNum;
+		if (anyRandomNum[j] == randomNum)
 		{
-			if (randomNum == anyRandomNum[j])
-			{
-				break;
-			}
+			break;
 		}
 	}
 	return randomNum;
 }
-
 void trumpWork2::SetNo(int setNo)
 {
 	no = setNo;
