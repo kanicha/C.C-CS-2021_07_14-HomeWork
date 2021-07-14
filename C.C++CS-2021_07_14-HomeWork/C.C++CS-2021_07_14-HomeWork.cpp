@@ -97,7 +97,6 @@ trumpWork2 m_trumpDeck[53];
 
 int trumpMain2()
 {
-
 	initTrump();
 
 	// 5枚分手札回す処理
@@ -112,7 +111,7 @@ int trumpMain2()
 /// </summary>
 void initTrump()
 {
-	int const static TRUMP_INIT_NUM = 53;
+	static const int  TRUMP_INIT_NUM = 53;
 	int count = 0;
 
 	for (int i = 0; i < TRUMP_INIT_NUM; i++)
@@ -167,31 +166,30 @@ void initTrump()
 /// <returns></returns>
 int suffleTrump()
 {
-
 	// 生成した乱数保存変数
-	int anyRandomNum[5];
+	bool cardChecker[53] = {};
+	trumpWork2 card[53] = {};
+	// カウント変数
+	int count = 0;
 	// ランダム変数
 	int randomNum = 0;
-
-	// 初期化
-	for (int i = 0; i < 5; i++)
-	{
-		anyRandomNum[i] = -1;
-	}
-
-	// 100回シャッフル
-	for (int j = 0; j <= 100; j++)
+	
+	// シャッフル
+	while (count < 53)
 	{
 		// ランダム生成
 		randomNum = rand() % 53;
 
-		// 同じカードが出ないための例外処理 (うまく動かない感じです)
-		anyRandomNum[j] = randomNum;
-		if (anyRandomNum[j] == randomNum)
+		if (!cardChecker[randomNum])
 		{
-			break;
+			//card[count].SetNo();
+			//card[count].SetMark();
+			
+			cardChecker[randomNum] = true;
+			count++;
 		}
 	}
+	
 	return randomNum;
 }
 void trumpWork2::SetNo(int setNo)
